@@ -10,3 +10,4 @@ while True:
         pwlist.insert(eval(input("Enter place number: ")), input("Enter data: "))
     elif x == "R" or x == "r":
         pwlist.remove(eval(input("Enter place number: ")))
+#UNABLE TO INSERT HEAD OR END, ONLY IN MIDDLE NODES
