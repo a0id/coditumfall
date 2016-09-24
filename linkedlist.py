@@ -35,3 +35,11 @@ class LinkedList:
             else:
                 print(node.data)
                 node = node.link
+    def remove(self, place):
+        node = self.head
+        for x in range(place-1):
+            node = node.link
+        for x in range(place):
+            rmv = node.link
+        node.link = rmv.link
+        self.counter-=1
