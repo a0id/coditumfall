@@ -30,10 +30,11 @@ class LinkedList:
         node = self.head
         for x in range(self.counter):
             if node == self.end:
-                print(self.end.data)
+                print("["+str(x)+"]"+self.end.data)
                 break
             else:
-                print(node.data)
+                print("["+str(x)+"]"+node.data)
+                #ATTEMPTING TO SHOW DATA TYPE WHEN PRINTING
                 node = node.link
     def remove(self, place):
         if place == 0:
