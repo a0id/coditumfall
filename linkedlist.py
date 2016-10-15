@@ -29,7 +29,7 @@ class LinkedList:
         for x in range(self.counter-1):
             print("["+str(x)+"] "+node.data)
             node = node.link
-        print("["+str(self.counter)+"] "+node.data)
+        print("["+str(self.counter-1)+"] "+node.data)
     def remove(self, place):
         if place == 0:
             self.head = self.head.link
