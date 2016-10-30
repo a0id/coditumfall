@@ -30,6 +30,12 @@ class LinkedList:
             print("["+str(x)+"] "+node.data)
             node = node.link
         print("["+str(self.counter-1)+"] "+node.data)
+    def simplePrinter(self):
+        node = self.head
+        for x in range(self.counter-1):
+            print(node.data)
+            node = node.link
+        print(node.data)
     def remove(self, place):
         if place == 0:
             self.head = self.head.link
