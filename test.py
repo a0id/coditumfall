@@ -1,41 +1,41 @@
-from Tkinter import *
-from tkFileDialog import *
-filename = None
-def newFile():
-    global filename
-    filename = "Untitled"
-    text.delete(0.0, END)
-def saveFile():
-    global filename
-    t = text.get(0.0, END)
-    with open(filename, "w") as f:
-        w.write(t)
-def saveAs():
-    f = asksaveasfile(mode="w", defaultextension=".py")
-    t = text.get(0.0, END)
-    try:
-        f.write(t.rstrip())
-    except:
-        showerror(title="Oops!", message="Unable to save file.")
-def openFile():
-    f = askopenfile(mode="r")
-    t = f.read()
-    text.delete(0.0, END)
-    text.insert(0.0, t)
+from tkinter import *
+import tkinter.filedialog
+class TextEditor:
+    @staticmethod
+    def quit_app(event=None):
+        root.quit()
+    def open_file(self, event=None):
+        txt_file = tkinter.filedialog.askopenfilename(parent=root)
+        if txt_file:
+            self.text_area.delete(1.0, END)
+            with open(txt_file) as _file:
+                self.text_area.insert(1.0, _file.read())
+                root.update_idletasks()
+    def save_file(self, event=None):
+        file = tkinter.filedialog.asksaveasfile(mode='w')
+        if file != None:
+            data = self.text_area.get('1.0', END + '-1c')
+            file.write(data)
+            file.close()
+    def __init__(self, root):
+        self.text_to_write = ""
+        root.title("Stealth Editor")
+        root.geometry("600x550")
+        frame = Frame(root, width=600, height=550)
+        scrollbar = Scrollbar(frame)
+        self.text_area = Text(frame, width=600, height=550, yscrollcommand=scrollbar.set, padx=10, pady=10)
+        scrollbar.config(command=self.text_area.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.text_area.pack(side="left", fill="both", expand=True)
+        frame.pack()
+        the_menu = Menu(root)
+        file_menu = Menu(the_menu, tearoff=0)
+        file_menu.add_command(label="Open", command=self.open_file)
+        file_menu.add_command(label="Save", command=self.save_file)
+        file_menu.add_separator()
+        file_menu.add_command(label="Quit", command=self.quit_app)
+        the_menu.add_cascade(label="File", menu=file_menu)
+        root.config(menu=the_menu)
 root = Tk()
-root.title("Stealth Python Editor.")
-root.minsize(width=550, height=550)
-root.maxsize(width=550, height=550)
-text = Text(root, width=550, height=550)
-text.pack()
-menubar = Menu(root)
-filemenu = Menu(menubar)
-filemenu.add_command(label="New", command=newFile)
-filemenu.add_command(label="Open", command=openFile)
-filemenu.add_command(label="Save", command=saveFile)
-filemenu.add_command(label="Save As", command=saveAs)
-filemenu.add_separator()
-filemenu.add_command(label="Quit", command=root.quit)
-menubar.add_cascade(label="File", menu=filemenu)
-root.config(menu=menubar)
+text_editor = TextEditor(root)
 root.mainloop()
