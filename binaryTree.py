@@ -4,20 +4,20 @@ class Node:
         self.left = None
         self.right = None
         self.data = None
-        self.addLeft = None
-        self.addRight = None
 class BinaryTree:
     def __init__(self):
         self.head = None
         self.counter = 0
-    def printTree(self, curr):
-        if self.left != None:
-            self.printTree(self.left)
+    def printTreeRec(self, curr):
+        if curr.left != None:
+            self.printTreeRec(curr.left)
         print(curr.data)
-        if self.right != None:
-            self.printTree(self.right)
+        if curr.right != None:
+            self.printTreeRec(curr.right)
+    def printTree(self):
+        self.printTreeRec(self.head)
     def add(self, value):
-        q = Queue
+        q = Queue()
         if self.head != None:
             q.push(self.head)
             while True:
@@ -35,4 +35,8 @@ class BinaryTree:
                 else:
                     q.push(temp.left)
                     q.push(temp.right)
+        else:
+            newNode = Node()
+            self.head = newNode
+            self.head.data = value
         self.counter += 1

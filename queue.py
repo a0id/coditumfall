@@ -4,7 +4,9 @@ class Queue():
     def push(self, value):
         self.values.append(value)
     def pop(self):
-        self.values.pop()
+        #temp = self.values[0]
+        return self.values.pop(0)
+        
     def printer(self):
         for x in range(len(self.values)):
             print(self.values[x])

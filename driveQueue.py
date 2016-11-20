@@ -5,7 +5,7 @@ while True:
     if what == "push":
         q.push(input("Enter Value: "))
     elif what == "pop":
-        q.pop()
+        print(q.pop())
     elif what == "print":
         q.printer()
     elif what == "clear":
