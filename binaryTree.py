@@ -40,3 +40,5 @@ class BinaryTree:
             self.head = newNode
             self.head.data = value
         self.counter += 1
+    def clear(self):
+        self.head = None
